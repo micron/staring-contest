@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Kreativrudel Webdev Team",
   "license": "ISC",
   "dependencies": {
     "gulp-plumber": "~0.5.6",
