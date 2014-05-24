@@ -5,7 +5,7 @@ var http = require('http');
 var devApp = connect();
 
 gulp.task('server', function(callback){
-    devApp.use(connect.static('./'));
+    devApp.use(connect.static('web/'));
 
     var server = http.createServer(devApp).listen(8000, '0.0.0.0');
     server.on('listening', function(){
