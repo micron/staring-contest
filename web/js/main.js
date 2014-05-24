@@ -143,7 +143,7 @@ jQuery(function($){
             ctx.strokeRect((r.x*sc)|0,(r.y*sc)|0,(r.width*sc)|0,(r.height*sc)|0);
         }
 
-        if(typeof r == 'object'){
+        if(typeof r == 'object' && r !== null){
             lastWidth = r.width;
         }
 
