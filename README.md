@@ -6,3 +6,7 @@ It's an game where you have to keep your eyes open in order to not get eaten by 
 
 * Run ``npm install`` and ``bower install``
 * An server is served when you run ``gulp``
+
+## Third party stuff
+
+To track the eyes we currently use the tracking.js script from Eduardo Lundgren (https://github.com/eduardolundgren/tracking.js)
