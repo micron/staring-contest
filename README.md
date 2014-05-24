@@ -1,4 +1,6 @@
-# Interactive Cologne 2014 Hackathon Project
+# Interactive Cologne 2014 Hackathon Project - Staring Contest
+
+Who stares longest, survives!
 
 It's an game where you have to keep your eyes open in order to not get eaten by the ghost known from Super Mario World (SNES).
 
@@ -9,4 +11,5 @@ It's an game where you have to keep your eyes open in order to not get eaten by 
 
 ## Third party stuff
 
-To track the eyes we currently use the tracking.js script from Eduardo Lundgren (https://github.com/eduardolundgren/tracking.js)
+To track the eyes we currently use JSFeat script from Eugene Zatepyakin (https://github.com/inspirit/jsfeat).
+Due to critical performance loss we switched from tracking.js (https://github.com/eduardolundgren/tracking.js).
