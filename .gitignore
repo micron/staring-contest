@@ -1,0 +1,37 @@
+.DS_STORE
+node_modules/
+bower_components/
+.idea/
+web/css/bootstrap
+web/js/bootstrap
+web/js/jquery
+web/js/jquery-reel
+web/css/import.css
+web/assets
+vendor/
+
+#ecplise
+.buildpath
+.settings
+.project
+
+/dist/
+
+.ftppass
+*.lock
+.tmp/
+web/css/import.map
+
+/.htusers
+/import.map
+
+# dexy stuff
+styleguide/.dexy/
+!styleguide/.dexy/.dexy-generated
+styleguide/output/
+
+# c5 stuff
+c5/files/*
+c5/config/site.php
+c5/themes/linkit2014/css/import.css
+app.min.js
