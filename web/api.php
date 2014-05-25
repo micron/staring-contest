@@ -14,10 +14,10 @@ sessionKey char(255)
 
 $key = '123';  // "registration key"
 $dataBaseName = 'ghostgame';
-$dataBase = '';
+$dataBase = 'd01333e0';
 $dataBaseHost = 'localhost';
-$dataBaseUser = '';
-$dataBasePassword = '';
+$dataBaseUser = 'd01333e0';
+$dataBasePassword = 'doode2knuff4';
 
 $connection = mysql_connect($dataBaseHost,$dataBaseUser,$dataBasePassword)or die("connection fail");
 
@@ -29,12 +29,13 @@ function failMessage($failMessage) {
     exit;
 }
 
-function checkPostData($userEmail, $userScore, $key) {
+function checkPostData($userEmail, $userScore, $userName, $key) {
 
     $failMessage = array(
                             'key' => '',
                             'userEmail' => '',
-                            'score' => ''
+                            'score' => '',
+                            'userName' => ''
     );
 
     if($_POST['key'] != $key) {
@@ -49,6 +50,10 @@ function checkPostData($userEmail, $userScore, $key) {
         $failMessage['score'] = 'Score Fehler';
     }
 
+    if($userName == '') {
+        $failMessage['userName'] = "Es ist kein Name angegeben";
+    }
+
     foreach($failMessage as $index => $value)
     {
 
@@ -60,7 +65,7 @@ function checkPostData($userEmail, $userScore, $key) {
 
 }
 
-function insertData($userEmail, $userScore, $sessionKey, $dataBaseName) {
+function insertData($userEmail, $userScore, $userName, $sessionKey, $dataBaseName) {
 
     $result = mysql_query("SELECT * FROM " . $dataBaseName . " WHERE email ='".$userEmail."' ");
     $resultAssoc = mysql_fetch_assoc($result);
@@ -69,7 +74,8 @@ function insertData($userEmail, $userScore, $sessionKey, $dataBaseName) {
 
     if(mysql_num_rows($result) == 0 ) {
 
-        $sql = "INSERT INTO " . $dataBaseName . " (email, score, sessionKey) VALUES ('". $userEmail. "',
+        $sql = "INSERT INTO " . $dataBaseName . " (name, email, score, sessionKey) VALUES ('" . $userName . "',
+                                                                        '". $userEmail. "',
                                                                        '". $userScore. "',
                                                                        '". $sessionKey. "'
                                                                        ) ";
@@ -95,13 +101,29 @@ if(isset($_POST['key']) && is_numeric($_POST['key']) ) {
 
     $userEmail = $_POST['email'];
     $userScore = $_POST['score'];
+    $userName = $_POST['name'];
     $sessionKey = $_POST['sessionKey'];
 
-    checkPostData($userEmail, $userScore, $key);
-    insertData($userEmail, $userScore, $sessionKey, $dataBaseName);
+
+    checkPostData($userEmail, $userScore, $userName, $key);
+    insertData($userEmail, $userScore, $userName, $sessionKey, $dataBaseName);
 
 }
 
 if(isset($_POST['read']) && $_POST['read'] == 1) {
-    $result = mysql_query("SELECT * FROM " . $dataBaseName . " ");
+    $result = mysql_query("SELECT name, score, created FROM " . $dataBaseName . " ORDER BY score ASC");
+
+    $highscoreList = array();
+
+    while($scoreList = mysql_fetch_array($result, MYSQL_ASSOC)) {
+
+        $dataBaseList = array('name'    => $scoreList['name'],
+                              'score'   => $scoreList['score'],
+                              'created' => $scoreList['created']
+                             );
+        $highscoreList = array_merge($highscoreList, $dataBaseList);
+
+    }
+
+    echo json_encode($highscoreList);
 }
