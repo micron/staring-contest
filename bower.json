@@ -15,6 +15,7 @@
   ],
   "dependencies": {
     "jsfeat": "*",
-    "threejs": "r67"
+    "threejs": "r67",
+    "tweenjs": "r13"
   }
 }
