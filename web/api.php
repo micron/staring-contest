@@ -121,7 +121,7 @@ if(isset($_POST['read']) && $_POST['read'] == 1) {
                               'score'   => $scoreList['score'],
                               'created' => $scoreList['created']
                              );
-        $highscoreList = array_merge($highscoreList, $dataBaseList);
+        $highscoreList[] = $dataBaseList;
 
     }
 
