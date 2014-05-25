@@ -14,10 +14,10 @@ sessionKey char(255)
 
 $key = '123';  // "registration key"
 $dataBaseName = 'ghostgame';
-$dataBase = 'd01333e0';
+$dataBase = '';
 $dataBaseHost = 'localhost';
-$dataBaseUser = 'd01333e0';
-$dataBasePassword = 'doode2knuff4';
+$dataBaseUser = '';
+$dataBasePassword = '';
 
 $connection = mysql_connect($dataBaseHost,$dataBaseUser,$dataBasePassword)or die("connection fail");
 
