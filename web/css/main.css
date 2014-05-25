@@ -7,6 +7,12 @@
     display: none;
 }
 
+#area{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
 canvas{
 
 }
@@ -15,4 +21,59 @@ canvas{
     display: none;
     width: 100%;
     height: 100%;
+}
+
+@font-face {
+    font-family: 'Super Mario Bros.';
+    src: url('http://www.fontsaddict.com/fontface/super-mario-bros.ttf');
+}
+
+body {
+    margin: 0;
+
+}
+
+#gui{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+}
+#gui h1, #counter{
+    text-align: center;
+    color: white;
+    font-family: 'Super Mario Bros.', Arial, sans-serif;
+    font-size: 80px;
+}
+#gui h2 {
+    text-align: center;
+    color: white;
+    font-family: 'Super Mario Bros.', Arial, sans-serif;
+    font-size: 60px;
+}
+
+#gui a {
+    text-align: center;
+    color: white;
+    font-family: 'Super Mario Bros.', Arial, sans-serif;
+    font-size: 26px;
+    display: block;
+}
+
+#canvas-container {
+    position: absolute;
+    top: 0px;
+    left:0px;
+    display: none;
+
+}
+
+#area{
+    border: 1px solid red;
+}
+
+#area.found{
+    border-color: green;
 }
