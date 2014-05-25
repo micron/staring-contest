@@ -1,9 +1,6 @@
---
--- Table structure for table `ghostgame`
---
-
 CREATE TABLE IF NOT EXISTS `ghostgame` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE latin1_german1_ci NOT NULL,
   `email` varchar(255) COLLATE latin1_german1_ci NOT NULL,
   `score` int(255) NOT NULL,
   `sessionKey` varchar(255) COLLATE latin1_german1_ci NOT NULL,
