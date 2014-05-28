@@ -69,6 +69,41 @@ body {
     display: none;
 
 }
+#input-fail {
+
+    text-align: center;
+    color: white;
+    font-family: 'Super Mario Bros.', Arial, sans-serif;
+    font-size: 30px;
+}
+
+#input-data {
+    display: block;
+    text-align: center;
+    margin-top: 5em;
+    margin-bottom: 1em;
+}
+#endscreen input {
+    font-family: 'Super Mario Bros.', Arial, sans-serif;
+    color: black;
+    width: 20%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+#endscreen table {
+    margin: 0 auto;
+    font-family: 'Super Mario Bros.', Arial, sans-serif;
+    font-size: 26px;
+    color: white;
+
+}
+#endscreen table th{
+    padding: 20px;
+}
+#endscreen table td{
+    padding-left: 20px;
+    padding-right: 20px;
+}
 
 #area{
     border: 1px solid red;

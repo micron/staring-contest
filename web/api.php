@@ -14,7 +14,7 @@ sessionKey char(255)
 
 $key = '123';  // "registration key"
 $dataBaseName = 'ghostgame';
-$dataBase = '';
+$dataBase = 'ghost-game';
 $dataBaseHost = 'localhost';
 $dataBaseUser = '';
 $dataBasePassword = '';
@@ -25,20 +25,21 @@ mysql_select_db($dataBase)or die("Database fail");
 
 function failMessage($failMessage) {
 
-    echo json_encode($failMessage);
+   echo json_encode($failMessage);
     exit;
 }
 
-function checkPostData($userEmail, $userScore, $userName, $key) {
+function checkGETData($userEmail, $userScore, $userName, $key) {
 
     $failMessage = array(
-                            'key' => '',
-                            'userEmail' => '',
-                            'score' => '',
-                            'userName' => ''
+                            'fail'      => 'no',
+                            'key'       => 'no',
+                            'userEmail' => 'no',
+                            'score'     => 'no',
+                            'userName'  => 'no'
     );
 
-    if($_POST['key'] != $key) {
+    if($_GET['key'] != $key) {
         $failMessage['key'] = "Der Key ist falsch";
     }
 
@@ -57,10 +58,12 @@ function checkPostData($userEmail, $userScore, $userName, $key) {
     foreach($failMessage as $index => $value)
     {
 
-        if($value[$index] != '') {
+        if($value != 'no') {
 
+            $failMessage['fail'] = "1";
             failMessage($failMessage);
         }
+
     }
 
 }
@@ -70,7 +73,7 @@ function insertData($userEmail, $userScore, $userName, $sessionKey, $dataBaseNam
     $result = mysql_query("SELECT * FROM " . $dataBaseName . " WHERE email ='".$userEmail."' ");
     $resultAssoc = mysql_fetch_assoc($result);
 
-    var_dump($resultAssoc['sessionKey']);
+
 
     if(mysql_num_rows($result) == 0 ) {
 
@@ -90,40 +93,52 @@ function insertData($userEmail, $userScore, $userName, $sessionKey, $dataBaseNam
     }
     else {
 
-        $failMessage = array( 'userEmail' => "Email Adresse ist schon vorhanden");
+        $failMessage = array(   'fail'      => '1',
+                                'userEmail' => "Email Adresse ist schon vorhanden");
 
         failMessage($failMessage);
     }
 
 }
 
-if(isset($_POST['key']) && is_numeric($_POST['key']) ) {
+function sendHighscoreList($dataBaseName) {
 
-    $userEmail = $_POST['email'];
-    $userScore = $_POST['score'];
-    $userName = $_POST['name'];
-    $sessionKey = $_POST['sessionKey'];
-
-
-    checkPostData($userEmail, $userScore, $userName, $key);
-    insertData($userEmail, $userScore, $userName, $sessionKey, $dataBaseName);
-
-}
-
-if(isset($_POST['read']) && $_POST['read'] == 1) {
-    $result = mysql_query("SELECT name, score, created FROM " . $dataBaseName . " ORDER BY score ASC");
+    $result = mysql_query("SELECT name, score, created FROM " . $dataBaseName . " ORDER BY score DESC LIMIT 0, 10");
 
     $highscoreList = array();
 
     while($scoreList = mysql_fetch_array($result, MYSQL_ASSOC)) {
 
-        $dataBaseList = array('name'    => $scoreList['name'],
-                              'score'   => $scoreList['score'],
-                              'created' => $scoreList['created']
-                             );
+        $dataBaseList = array( 'fail'   => '0',
+                               'name'    => $scoreList['name'],
+                               'score'   => $scoreList['score'],
+                               'created' => $scoreList['created']
+        );
         $highscoreList[] = $dataBaseList;
 
     }
 
     echo json_encode($highscoreList);
 }
+
+
+
+if(isset($_GET['key']) && is_numeric($_GET['key']) ) {
+
+    $userEmail = $_GET['email'];
+    $userScore = $_GET['score'];
+    $userName = $_GET['name'];
+    $sessionKey = $_GET['sessionKey'];
+
+
+
+    checkGETData($userEmail, $userScore, $userName, $key);
+    insertData($userEmail, $userScore, $userName, $sessionKey, $dataBaseName);
+    sendHighscoreList($dataBaseName);
+
+}
+
+if(isset($_GET['read']) && $_GET['read'] == 1 ) {
+    sendHighscoreList($dataBaseName);
+}
+

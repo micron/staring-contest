@@ -224,6 +224,8 @@ function end() {
     $( '#endscreen').fadeIn();
     $( '#points').html( points + ' Points' );
 
+    requestHighscore();
+
 }
 
 function init() {

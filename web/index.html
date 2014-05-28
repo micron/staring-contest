@@ -37,12 +37,23 @@
             <h1>You Lost</h1>
             <h2>you reached</h2>
             <h2 id="points">xxxx Points</h2>
-            <form method="post"  action="">
-                <input type="text" value="" name="email" placeholder="Email" />
-                <input type="text" value="" name="username" placeholder="username" />
+            <div style="margin-top: 20px;" id="input-fail"></div>
+            <div text-align="center" id="input-data">
+                <input type="text" value="" id="email" name="email" placeholder="Email" />
+                <input type="text" value="" id="name" name="username" placeholder="username" />
                 <input type="hidden" value="" name="username" placeholder="username" />
-                <input type="submit" />
-            </form>
+                <input id="db-btn-input" type="submit" />
+            </div>
+            <div id="table-data">
+            <table style="display: none; color:white;" class="highscore-list">
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Points</th>
+                </tr>
+            </table>
+            </div>
+
         </div>
 
     </div>
@@ -58,5 +69,6 @@
 <script src="assets/components/jsfeat/cascades/eye.js"></script>
 <script src="js/game.js"></script>
 <script src="js/eyetracker.js"></script>
+<script src="js/database.js"></script>
 </body>
 </html>
