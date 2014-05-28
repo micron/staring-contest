@@ -6,7 +6,7 @@ var requested = false;
 
 $('#db-btn-input').click(function() {
 
-    var randomNumber = Math.floor(Math.random() * (15 - 5)) + 5;
+    var randomNumber = makeId();
     var keyCheck = sessionStorage.getItem('ghostGame');
 
 
@@ -78,4 +78,15 @@ function fillHighscore(data) {
             '<td>' + data[i].score + '</td>' +
             '</tr>')
     });
+}
+
+function makeId()
+{
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for( var i=0; i < 20; i++ )
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
 }
