@@ -87,8 +87,22 @@ function insertData($userEmail, $userScore, $userName, $sessionKey, $dataBaseNam
     }
     elseif(mysql_num_rows($result) != 0 && $resultAssoc['sessionKey'] == $sessionKey) {
 
-        $sql = "UPDATE " . $dataBaseName . " SET score ='" . $userScore . "' WHERE email ='" . $userEmail . "' ";
-        mysql_query($sql);
+        $sql = "SELECT score, name FROM " . $dataBaseName . " WHERE email = '" . $userEmail . "' ";
+        $result = mysql_query($sql);
+        $row = mysql_fetch_row($result);
+
+        if($row[0] < $userScore ) {
+            $sql = "UPDATE " . $dataBaseName . " SET score ='" . $userScore . "' WHERE email ='" . $userEmail . "' ";
+            mysql_query($sql);
+
+        } else {
+
+            $failMessage = array(   'fail'      => '1',
+                                    'better' => "You were better than now");
+
+            failMessage($failMessage);
+        }
+
 
     }
     else {
