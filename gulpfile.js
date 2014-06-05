@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var plumber = require('gulp-plumber');
 var connect = require('connect');
 var http = require('http');
+var less = require('gulp-less');
 var devApp = connect();
 
 gulp.task('server', function(callback){
@@ -18,4 +19,21 @@ gulp.task('server', function(callback){
     });
 })
 
-gulp.task('default', ['server']);
+gulp.task('css', function(){
+    return gulp.src('web/css/import.less')
+        .pipe(plumber())
+        .pipe(less({
+            paths: [''],
+            sourceMap: true
+        }))
+        .pipe(gulp.dest('web/css'))
+
+});
+
+gulp.task('watch', function(){
+    gulp.watch('web/css/*.less', ['css']);
+});
+
+
+gulp.task('default', ['css', 'watch']);
+gulp.task('connect', ['server']);

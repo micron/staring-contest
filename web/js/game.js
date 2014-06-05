@@ -1,6 +1,59 @@
+var facebookApi = "http://graph.facebook.com";
+var shareUrl = "http://ghost.localhost";
+
+
 $( document ).ready( function() {
 
+    $.getJSON( facebookApi, {
+        id: shareUrl
+        }).success(function(data) {
+          $('#share-button p span ').text(data['shares']);
+    });
 
+    $('body').on('click', '#share-button',function(e){
+        e.preventDefault();
+        /*
+        FB.ui(
+            {
+                method: 'share',
+                picture: 'http://ecx.images-amazon.com/images/I/61Cp2jSQChL._SL1500_.jpg',
+                href: 'http://ghost.localhost',
+
+            },
+            function(response) {
+                if (response && !response.error_code) {
+                    alert('Posting completed.');
+                } else {
+                    alert('Error while posting.');
+                }
+            }
+        );
+        */
+
+         FB.ui(
+            {
+                method: 'feed',
+                name: 'kreativrudel - Staring Game',
+                link: 'http://ghost.localhost',
+                picture: 'http://ecx.images-amazon.com/images/I/61Cp2jSQChL._SL1500_.jpg',
+                caption: 'Who stares longest, survives!',
+                description: 'Fearless guy reached ' + $('#points').text() + ''
+
+            });
+         /*
+        FB.ui({
+            method: 'share_open_graph',
+            action_type: 'og.likes',
+            action_properties: JSON.stringify({
+                object:'http://ghost.localhost',
+                url: 'http://ghost.localhost'
+            })
+        }, function(response){}); */
+    });
+
+    $('body').on('click', '#highscore-show', function() {
+        requestHighscore();
+    });
 
     $( 'body' ).on( 'click', '#start-game', function() {
         $( '#start-screen' ).fadeOut( function() {
@@ -29,7 +82,7 @@ $( document ).ready( function() {
                     clearInterval(id);
                 } else {
                     console.log( counter );
-                    $( '#counter p').html( counter );
+                    $( '#counter h4').html( counter );
                 }
             }, 1000);
 
