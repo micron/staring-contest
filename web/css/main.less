@@ -1,0 +1,233 @@
+#video,
+#canvas{
+
+}
+
+#video{
+  display: none;
+}
+
+#area{
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.btn {
+  display: block;
+  text-align: center;
+}
+canvas{
+
+}
+
+.alert{
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+
+@font-face {
+  font-family: 'Super Mario Bros.';
+  src: url('http://www.fontsaddict.com/fontface/super-mario-bros.ttf');
+}
+
+body {
+  margin: 0;
+
+}
+#start-screen {
+  width: 60%;
+  margin: 0 auto;
+
+  p {
+    color: @text-color-base;
+    text-align: center;
+
+    span {
+      color: white;
+
+    }
+  }
+
+  img {
+    display: block;
+    margin: 0 auto;
+    width: 45px;
+    margin-top: 6em;
+  }
+}
+
+#gui{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+
+  h1, #counter{
+    text-align: center;
+    color: @text-color-headline;
+    font-family: @text-font-header;
+    font-size: @font-size-large;
+    margin-top: 1.5em;
+
+    span {
+     font-size: @font-size-large;
+    }
+  }
+
+  h2 {
+    text-align: center;
+    color: @text-color-headline;
+    font-family: @text-font;
+    font-size: @font-size-largest;
+    font-weight: bolder;
+    text-transform: uppercase;
+  }
+  h3 {
+    text-align: center;
+    color: @text-color-base;
+    font-family: @text-font;
+    font-size: 2.2em;
+
+  }
+  h4 {
+    text-align: center;
+    font-size: @font-size-largest;
+    color: @text-color-base;
+  }
+
+
+  a {
+    text-align: center;
+    color: black;
+    font-family: @text-font;
+    font-size: 22px;
+    display: inline-block;
+    padding: 0.6em 2em 0.6em 2em;
+    background-color: @btn-color-base;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 1em;
+
+
+    .transition();
+    //.transition(background-color);
+
+    &:focus {
+     color: red;
+    }
+    &:hover {
+      color: @btn-color-base;
+      background-color: black;
+    }
+
+
+  }
+
+}
+
+
+
+
+#canvas-container {
+  position: absolute;
+  top: 0px;
+  left:0px;
+  display: none;
+
+}
+#input-fail {
+
+  text-align: center;
+  color: white;
+  font-family: @text-font;
+  font-size: 30px;
+}
+
+#input-data {
+  display: block;
+  text-align: center;
+  margin-top: 5em;
+  margin-bottom: 1em;
+}
+#endscreen {
+
+  input {
+    font-family: @text-font;
+    color: black;
+    width: 33%;
+    padding-left: 1em;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: none;
+
+    &::-webkit-input-placeholder {
+      text-transform: uppercase;
+    }
+    &::-moz-placeholder {
+      text-transform: uppercase;
+    }
+    &:-ms-input-placeholder {
+      text-transform: uppercase;
+    }
+    &input:-moz-placeholder {
+      text-transform: uppercase;
+    }
+  }
+
+  input[type="submit"] {
+    background-color: @btn-color-base;
+    text-transform: uppercase;
+    .transition();
+
+    &:hover {
+      color: @btn-color-base;
+      background-color: black;
+
+    }
+  }
+
+  table {
+    margin: 0 auto;
+    font-family: @text-font;
+    font-size: @font-size-large;
+    color: @text-color-base;
+    width: 60%;
+    border-collapse:separate;
+    border-spacing: 0px 5px;
+
+    tr {
+      width: 20%;
+      background-color: rgba(0,0,0, 0.5);
+
+    }
+    th {
+      width: 20%;
+      padding: 10px;
+      text-transform: uppercase;
+    }
+  }
+
+  table td{
+    padding-left: 10px;
+    padding-right: 20px;
+
+    &:nth-child(2) {
+      text-transform: uppercase;
+    }
+  }
+}
+#area{
+  border: 1px solid red;
+}
+
+#area.found{
+  border-color: green;
+}
+
+#share-button {
+  margin: 0 auto;
+}

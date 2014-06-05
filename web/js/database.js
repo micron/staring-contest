@@ -73,9 +73,9 @@ function fillHighscore(data) {
 
         $('.highscore-list').append('' +
             '<tr>' +
-            '<td>' + rang + '.</td>' +
+            '<td>' + rang + '</td>' +
             '<td> ' + data[i].name +'</td>' +
-            '<td>' + data[i].score + '</td>' +
+            '<td>' + data[i].score + ' Points</td>' +
             '</tr>')
     });
 }
@@ -90,3 +90,5 @@ function makeId()
 
     return text;
 }
+
+
