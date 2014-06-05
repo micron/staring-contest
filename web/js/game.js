@@ -109,7 +109,7 @@ function initStage() {
     geometry.applyMatrix( new THREE.Matrix4().makeScale( -1, 1, 1 ) );
 
     var material = new THREE.MeshBasicMaterial( {
-        map: THREE.ImageUtils.loadTexture( 'img/p5Ec1QV 2.jpg' )
+        map: THREE.ImageUtils.loadTexture( 'img/test2.jpg' )
     } );
 
     mesh = new THREE.Mesh( geometry, material );
